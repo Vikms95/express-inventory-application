@@ -12,9 +12,8 @@ if (!userArgs[0].startsWith('mongodb')) {
 */
 var async = require('async')
 // Require models and store them in a variable to use them
-var MovieInstance = require('./models/movieinstance')
+var MovieInstance = require('./models/MovieInstance')
 var Movie = require('./models/movie')
-var Director = require('./models/director')
 var Actor = require('./models/actor')
 var Genre = require('./models/genre')
 
@@ -32,11 +31,10 @@ var books = []
 var actors = []
 var genres = []
 
-function actorCreate(name, movies, directors_worked, cb) {
+function actorCreate(name, movies, cb) {
   let actordetail = {
     name: name,
     movies: movies,
-    directors_worked: directors_worked
   }
   
   let actor = new Actor(actordetail);
@@ -111,7 +109,7 @@ function movieInstanceCreate(movie, status, cb) {
 function createGenreActors(cb) {
     async.series([
         function(callback) {
-          actorCreate('Patrick', 'Rothfuss', '1973-06-06', false, callback);
+          actorCreate('Benedict Cumberbatch', 'Rothfuss', '1973-06-06', false, callback);
         },
         function(callback) {
           actorCreate('Ben', 'Bova', '1932-11-8', false, callback);
