@@ -14,15 +14,13 @@ Models
 
   - Movie = {
     name: String
-    movie_franchise: movie_franchise._id
-    director: director._id,
+    top_movies: [top_movies]
     actors: [actor._id],
   }
 
   - Actor = {
     name: String
     movies: [movies._id],
-    directors_worked: [director._id]
   }
 
   - Genre = {
@@ -30,3 +28,6 @@ Models
   }
 
 >URL action + this._id
+
+TODO- Introduce database data
+Leave the Object.id fields as empty? or reference within the array with referenceArray[index]
