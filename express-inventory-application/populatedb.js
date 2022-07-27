@@ -35,6 +35,7 @@ function actorCreate(name, movies, cb) {
     name: name,
     movies: movies,
   }
+  
   let actor = new Actor(actordetail);
        
   actor.save(function (err) {
