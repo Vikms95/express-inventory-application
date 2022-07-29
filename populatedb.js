@@ -63,11 +63,12 @@ function genreCreate(name, cb) {
   }   );
 }
 
+
 function movieCreate(name, movie_franchise, actors, cb) {
   moviedetail = { 
     name: name,
     movie_franchise: movie_franchise,
-    actors: [actors],
+    actors: actors,
   }
     
   var movie = new Movie(moviedetail);    
@@ -115,19 +116,19 @@ function createGenreActors(cb) {
       //   name:String
       // }
         function(callback) {
-          actorCreate('Benedict Cumberbatch', [movies[2]] ,callback);
+          actorCreate('Benedict Cumberbatch', movies[2] ,callback);
         },
         function(callback) {
-          actorCreate('Ewan McGregor', [movies[2]],  callback);
+          actorCreate('Ewan McGregor', movies[2],  callback);
         },
         function(callback) {
-          actorCreate('Viggo Mortensen', [movies[2]],  callback);
+          actorCreate('Viggo Mortensen', movies[2],  callback);
         },
         function(callback) {
-          actorCreate('Natalie Portman', [movies[2]],  callback);
+          actorCreate('Natalie Portman', movies[2],  callback);
         },
         function(callback) {
-          actorCreate('Marion Cotillard', [movies[2]],  callback);
+          actorCreate('Marion Cotillard', movies[2],  callback);
         },
         function(callback) {
           genreCreate("Action", callback);
@@ -152,13 +153,13 @@ function createMovies(cb) {
       //   actors: [actor._id],
       // }
         function(callback) {
-          movieCreate('The Lord of the Rings: The Return of the King', 'The Lord of the Rings', [], callback);
+          movieCreate('The Lord of the Rings: The Return of the King', 'The Lord of the Rings', [actors[1]], callback);
         },
         function(callback) {
-          movieCreate('Star Wars: A New Hope', 'Star Wars',[], callback);
+          movieCreate('Star Wars: A New Hope', 'Star Wars',[actors[1]], callback);
         },
         function(callback) {
-          movieCreate('Avengers: Endgame', 'Avengers', [], callback);
+          movieCreate('Avengers: Endgame', 'Avengers', [actors[1]], callback);
         },
         ],
         // optional callback
@@ -166,7 +167,7 @@ function createMovies(cb) {
 }
 
 
-function createBookInstances(cb) {
+function createMovieInstances(cb) {
     async.parallel([
       // - MovieInstance = {
       //   movie: movie._id,
@@ -188,7 +189,7 @@ function createBookInstances(cb) {
 async.series([
     createGenreActors,
     createMovies,
-    createBookInstances
+    createMovieInstances
 ],
 // Optional callback
 function(err, results) {
@@ -196,7 +197,7 @@ function(err, results) {
         console.log('FINAL ERR: '+err);
     }
     else {
-        console.log('BOOKInstances: '+ bookinstances);
+        console.log('BOOKInstances: '+ movieInstances);
         
     }
     // All done, disconnect from database

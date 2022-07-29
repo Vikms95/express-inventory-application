@@ -4,7 +4,6 @@ let Schema = mongoose.Schema
 let ActorSchema = new Schema({
   name: {type: String, maxLength: 50},
   movies: {type: [Schema.Types.ObjectId]},
-  directors_worked: {type: [Schema.Types.ObjectId]}
 })
 
 ActorSchema
