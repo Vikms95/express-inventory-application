@@ -30,5 +30,6 @@ Models
 >URL action + this._id
 
 
-- Create index view
+<!-- - Create index view -->
+- Create view to see all movies(movie_list.pug)
 - Make movies not depend on actors on database populate process or viceversa
