@@ -1,6 +1,8 @@
-let Movie = require('../models/Movie')
-let Actor = require('../models/Actor')
-let async = require('async')
+const Movie = require('../models/Movie')
+const Actor = require('../models/Actor')
+const Genre = require('../models/Genre')
+
+const async = require('async');
 
 exports.index =  function(req, res, next){
   // Count the items to be able to show them on the index
@@ -35,5 +37,23 @@ exports.movie_detail = function(req, res, next){
       if(err) return next(err)
       res.render('movie_detail', {name: results.name, franchise: results.movie_franchise, genre: results.genre, actors: results.actors})
     })
+}
+
+exports.movie_create_get = function(req, res, next){
+  async.parallel({
+    genres: function(callback){
+      Genre.find(callback)
+    },
+    actors: function(callback){
+      Actor.find(callback)
+    }
+  }, function(err, results){
+    if(err) return next(err)
+    // Create template
+    console.log(results);
+    
+    res.render('movie_create', {title:'Create movie', genres: results.genres, actors: results.actors})
+  }
   
+  )  
 }

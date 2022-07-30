@@ -12,5 +12,11 @@ exports.movie_instance_list = function(req, res, next){
         })
 }
 exports.movie_instance_details = function(req, res, next){
-
+  MovieInstance
+    .findById(req.params.id)
+    .populate('movie')
+    .exec(function(err, movieinstance){
+      if(err) return next(err)
+      res.render('movieinstance_details', {title: movieinstance.movie.name , movieinstance: movieinstance})
+    })
 }

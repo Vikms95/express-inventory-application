@@ -1,0 +1,12 @@
+extends layout 
+
+block content 
+  h1= title + ' instance details'
+  
+  hr
+  p Status: #{movieinstance.status}       
+  hr
+  div
+    a(href="") Update instance 
+  div
+    a(href="") Delete instance

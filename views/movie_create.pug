@@ -1,0 +1,11 @@
+extends layout 
+
+block content 
+  form(method='POST' action='')
+    div 
+      label(for='title') Title:
+      input(type='text', placeholder='Name of book' name='title' required='true' value=(movie==undefined ? '' : movie.name))
+      input(type='select', name='genres')
+      input(type='select', name='actors')
+
+    button(type='submit')
