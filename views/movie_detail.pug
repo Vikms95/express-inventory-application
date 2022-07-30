@@ -1,16 +1,20 @@
 extends layout 
 
 block content 
-  h1= title
+  h1= name + ' details'
   span
   hr
-  p Name:       
+  p Name: #{name}       
   hr
-  p Movie franchise:       
+  p Movie franchise:  #{franchise}      
   hr
-  p Actors:       
+  p Actors:
+    each el in actors
+      span  #{el}         
   hr
-  p Genre:       
+  p Genre:
+    each el in genre
+      span  #{el}      
   div
     a(href="") Update movie 
   div

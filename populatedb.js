@@ -30,10 +30,9 @@ var movies = []
 var actors = []
 var genres = []
 
-function actorCreate(name, movies, cb) {
+function actorCreate(name, cb) {
   let actordetail = {
     name: name,
-    movies: movies,
   }
   
   let actor = new Actor(actordetail);
@@ -64,11 +63,12 @@ function genreCreate(name, cb) {
 }
 
 
-function movieCreate(name, movie_franchise, actors, cb) {
+function movieCreate(name, movie_franchise, actors, genre, cb) {
   moviedetail = { 
     name: name,
     movie_franchise: movie_franchise,
-    actors: actors,
+    actors: [...actors],
+    genre: [...genre]
   }
     
   var movie = new Movie(moviedetail);    
@@ -116,19 +116,19 @@ function createGenreActors(cb) {
       //   name:String
       // }
         function(callback) {
-          actorCreate('Benedict Cumberbatch', movies[2] ,callback);
+          actorCreate('Benedict Cumberbatch' ,callback);
         },
         function(callback) {
-          actorCreate('Ewan McGregor', movies[2],  callback);
+          actorCreate('Ewan McGregor',  callback);
         },
         function(callback) {
-          actorCreate('Viggo Mortensen', movies[2],  callback);
+          actorCreate('Viggo Mortensen',  callback);
         },
         function(callback) {
-          actorCreate('Natalie Portman', movies[2],  callback);
+          actorCreate('Natalie Portman',  callback);
         },
         function(callback) {
-          actorCreate('Marion Cotillard', movies[2],  callback);
+          actorCreate('Marion Cotillard',  callback);
         },
         function(callback) {
           genreCreate("Action", callback);
@@ -138,6 +138,9 @@ function createGenreActors(cb) {
         },
         function(callback) {
           genreCreate("Drama", callback);
+        },
+        function(callback) {
+          genreCreate("Sci-Fi", callback);
         },
         ],
         // optional callback
@@ -153,13 +156,13 @@ function createMovies(cb) {
       //   actors: [actor._id],
       // }
         function(callback) {
-          movieCreate('The Lord of the Rings: The Return of the King', 'The Lord of the Rings', [actors[1]], callback);
+          movieCreate('The Lord of the Rings: The Return of the King', 'The Lord of the Rings', [actors[2].name], [genres[0].name], callback);
         },
         function(callback) {
-          movieCreate('Star Wars: A New Hope', 'Star Wars',[actors[1]], callback);
+          movieCreate('Star Wars: A New Hope', 'Star Wars',[actors[1].name], [genres[3].name] , callback);
         },
         function(callback) {
-          movieCreate('Avengers: Endgame', 'Avengers', [actors[1]], callback);
+          movieCreate('Avengers: Endgame', 'Avengers', [actors[0].name], [genres[0].name, genres[2].name, genres[3].name], callback);
         },
         ],
         // optional callback

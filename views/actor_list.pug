@@ -1,0 +1,11 @@
+extends layout 
+
+block content 
+  h1= title
+
+  ul 
+    each actor in actor_list 
+      li 
+        a(href=actor.url) #{actor.name}
+    else 
+      li There are no actors.

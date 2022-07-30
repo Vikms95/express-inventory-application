@@ -31,5 +31,7 @@ Models
 
 
 <!-- - Create index view -->
-- Create view to see all movies(movie_list.pug)
-- Make movies not depend on actors on database populate process or viceversa
+<!-- - Create view to see all movies(movie_list.pug) -->
+- Create actor list
+- Create actor details
+- Whenever an actor is created, creates its movies array based on the movies it appears
