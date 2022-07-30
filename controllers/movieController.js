@@ -2,7 +2,7 @@ let Movie = require('../models/Movie')
 let Actor = require('../models/Actor')
 let async = require('async')
 
-exports.index =  function(req,res){
+exports.index =  function(req,res, next){
   // Count the items to be able to show them on the index
   async.parallel({
     movie_count: function(callback){
@@ -12,7 +12,7 @@ exports.index =  function(req,res){
       Actor.countDocuments({}, callback)
     }
   }, function(err, results){
-    console.log(results);
+    if (err) return next(err)
     
     res.render('index', {title: 'Movie Inventory', error: err, data: results})
   })

@@ -5,7 +5,25 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-// console.log(indexRouter);
+
+// Setup mongoose
+let mongoose = require('mongoose')
+let newURI = 'mongodb+srv://vikms:ustdedt8@cluster0.bni9sko.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(
+  newURI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err, res) {
+      try {
+          console.log('Connected to Database');
+      } catch (err) {
+          throw err;
+      }
+  });
+  
+let db = mongoose.connection
+
+db.on('error', console.error.bind(console, 'MongoDB connection error: '))
+
 
 var app = express();
 
