@@ -30,8 +30,10 @@ exports.movie_list = function(req, res, next){
 exports.movie_detail = function(req, res, next){
   Movie
     .findById(req.params.id)
+    .populate('actors')
     .exec(function(err, results) {
       if(err) return next(err)
-      res.render('movie_detail', {name: results.name, franchise: results.movie_franchise, genre: results.genre , actors: results.actors})
+      res.render('movie_detail', {name: results.name, franchise: results.movie_franchise, genre: results.genre, actors: results.actors})
     })
+  
 }

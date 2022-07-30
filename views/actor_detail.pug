@@ -1,0 +1,18 @@
+extends layout 
+
+block content 
+  h1= actor.name + ' details'
+  span
+  hr
+  p Name: #{actor.name}       
+  hr
+  p Movies:
+  if movies  
+    each el in movies
+      span  #{el.name}         
+  
+  hr
+  div
+    a(href="") Update actor 
+  div
+    a(href="") Delete actor  

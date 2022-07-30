@@ -17,7 +17,7 @@ Models
     top_movies: [top_movies]
     actors: [actor._id],
   }
-
+<>
   - Actor = {
     name: String
     movies: [movies._id],
@@ -32,6 +32,8 @@ Models
 
 <!-- - Create index view -->
 <!-- - Create view to see all movies(movie_list.pug) -->
-- Create actor list
 - Create actor details
-- Whenever an actor is created, creates its movies array based on the movies it appears
+- Whenever an actor is created, create its movies array based on the movies it appears
+  <!-- :I need to use id within the array to be able to reference it? -->
+  :find Schema.Types.ObjectId in array, I already got how to populate a field that contains an id
+

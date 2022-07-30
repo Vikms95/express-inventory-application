@@ -156,13 +156,13 @@ function createMovies(cb) {
       //   actors: [actor._id],
       // }
         function(callback) {
-          movieCreate('The Lord of the Rings: The Return of the King', 'The Lord of the Rings', [actors[2].name], [genres[0].name], callback);
+          movieCreate('The Lord of the Rings: The Return of the King', 'The Lord of the Rings', [actors[2]], [genres[0].name], callback);
         },
         function(callback) {
-          movieCreate('Star Wars: A New Hope', 'Star Wars',[actors[1].name], [genres[3].name] , callback);
+          movieCreate('Star Wars: A New Hope', 'Star Wars',[actors[1]], [genres[3].name] , callback);
         },
         function(callback) {
-          movieCreate('Avengers: Endgame', 'Avengers', [actors[0].name], [genres[0].name, genres[2].name, genres[3].name], callback);
+          movieCreate('Avengers: Endgame', 'Avengers', [actors[0]], [genres[0].name, genres[2].name, genres[3].name], callback);
         },
         ],
         // optional callback

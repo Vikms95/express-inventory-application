@@ -4,7 +4,7 @@ let Schema = mongoose.Schema
 let MovieSchema = new Schema({
   name: {type: String, required: true, maxLength: 50},
   movie_franchise: {type: String},
-  actors: {type: [String]},
+  actors: [{type: Schema.Types.ObjectId, ref:'ActorSchema'}],
   genre: {type: [String]}
 })
 
