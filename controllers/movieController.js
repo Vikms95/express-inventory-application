@@ -21,10 +21,19 @@ exports.index =  function(req, res, next){
 exports.movie_list = function(req, res, next){
   Movie
     .find({}, 'name')
-    .exec(function( err, list_movies) {
+    .exec(function(err, list_movies) {
       if(err) return next(err)
-      console.log(list_movies);
-      
       res.render('movie_list', {title: 'List of movies', movie_list: list_movies})
+  })
+}
+
+exports.movie_detail = function(req, res, next){
+  Movie
+    .findById(req.params.id)
+    .populate('name')
+    .exec(function(err, results) {
+      if(err) return next(err)
+      console.log(results);
+      res.render('movie_detail', {title: `${results.name} details`})
     })
-  }
+}

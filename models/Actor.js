@@ -9,7 +9,7 @@ let ActorSchema = new Schema({
 ActorSchema
   .virtual('url')
   .get(function(){
-    return '/catalog/actor/' + this._id
+    return '/actor/' + this._id
   })
 
 module.exports = mongoose.model('ActorSchema', ActorSchema)

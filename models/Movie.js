@@ -11,7 +11,7 @@ let MovieSchema = new Schema({
 MovieSchema
   .virtual('url')
   .get(function() {
-    return '/catalog/movie/' + this._id
+    return '/movie/' + this._id
   })
 
 module.exports = mongoose.model('MovieSchema', MovieSchema)
