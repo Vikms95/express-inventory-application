@@ -136,6 +136,8 @@ exports.movie_update_get = function(req, res, next){
     }
   }, function(err, results){
       if(err) return next(err)
+      // Render the movie_create template 
+      // with the name already inserted in the input fields as value
       res.render('movie_create', 
       {
         title:'Update movie', 
@@ -144,5 +146,44 @@ exports.movie_update_get = function(req, res, next){
         actors: results.actors
       })
   })
-  // Render the movie_create template with the data already inserted in the input fields as value
 }
+
+exports.movie_update_post = [
+  (req, res, next) =>{
+    const errors = validationResult(req)
+    const movie = new Movie({
+      _id: req.params.id,
+      name: req.body.name,
+      actors: req.body.actors,
+      genre: req.body.genres
+    })
+    if(!errors.isEmpty()){
+      // Redirect to the form with errors as parameter
+      async.parallel({
+        genres: function(callback){
+          Genre.find(callback)
+        },
+        actors: function(callback){
+          Actor.find(callback)
+        }
+      }, function(err, results){
+        if(err) return next(err)
+        res.render('movie_create', 
+          {
+            title:'Update movie',
+            genres: results.genres, 
+            actors: results.actors, 
+            movie: movie, 
+            errors: errors.array()
+          })
+      })
+      
+    }else{
+      // Find and update the movie
+      Movie.findByIdAndUpdate(req.params.id, movie, {}, function(err, updatedMovie){
+        if(err) return next(err)
+        res.redirect(updatedMovie.url)
+      })
+    }
+  }
+]
