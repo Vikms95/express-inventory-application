@@ -50,7 +50,7 @@ exports.movie_create_get = function(req, res, next){
   }, function(err, results){
     if(err) return next(err)
     // Create template
-    console.log(results);
+    console.log(results.actors);
     
     res.render('movie_create', {title:'Create movie', genres: results.genres, actors: results.actors})
   }

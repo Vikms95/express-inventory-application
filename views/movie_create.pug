@@ -5,7 +5,15 @@ block content
     div 
       label(for='title') Title:
       input(type='text', placeholder='Name of book' name='title' required='true' value=(movie==undefined ? '' : movie.name))
-      input(type='select', name='genres')
-      input(type='select', name='actors')
-
-    button(type='submit')
+      br
+      label(for='genres') Genres:
+      select(type='select', placeholder='Select genre' name='genres')
+        for genre in genres
+          option( value=genre._id selected= false ) #{genre.name}
+      br
+      label(for='actors') Actors:
+      select(type='select', placeholder='Select actor' name='actors') 
+        for actor in actors
+          option( value=actor._id selected= false ) #{actor.name}
+    //- This button will trigger the POST method
+    button(type='submit') Create movie
