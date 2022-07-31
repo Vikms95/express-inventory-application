@@ -1,0 +1,19 @@
+extends layout 
+
+block content 
+  form(method='POST' action='')
+    div 
+      label(for='name') Name:
+      input(type='text', placeholder='Name of actor' name='name' required='true' value=(actor==undefined ? '' : actor.name))
+      br
+      label(for='movies') Movies he/she acted on:
+      select(type='select', placeholder='Select movies' name='genres')
+        for movie in movie_list
+          option( value=movie.name selected= false ) #{movie.name}
+      br
+    button(type='submit') Create actor
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
+    

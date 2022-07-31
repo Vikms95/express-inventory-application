@@ -32,5 +32,19 @@ exports.actor_detail = function(req, res, next){
     if(err) return next(err)
     res.render('actor_detail', {actor: results.actor, movies: results.movies})
   })
-  // Load actor_details template with the object obtained
+}
+
+exports.actor_create_get = function(req, res, next){
+  Movie
+    .find()
+    .exec(function(err, movie_list){
+      if(err) return next(err)
+      console.log("Hi");
+      
+      res.render('actor_create',
+      {
+        title:'Create Actor', 
+        movie_list: movie_list
+      })
+    })
 }

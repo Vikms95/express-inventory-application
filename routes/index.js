@@ -11,14 +11,12 @@ router.get('/', movie_controller.index);
 // MOVIE ROUTES
 router.get('/movies', movie_controller.movie_list)
 
-
-// -- Pending
-
 router.get('/movie/create', movie_controller.movie_create_get)
 
 router.get('/movie/:id', movie_controller.movie_detail)
 
 router.post('/movie/create', movie_controller.movie_create_post)
+// -- Pending
 
 // router.get('/movie/:id/update', movie_controller.movie_update_get)
 
@@ -31,11 +29,12 @@ router.post('/movie/create', movie_controller.movie_create_post)
 // ACTOR ROUTES
 router.get('/actors', actor_controller.actor_list)
 
+router.get('/actor/create', actor_controller.actor_create_get)
+
 router.get('/actor/:id', actor_controller.actor_detail)
 
 // -- Pending
 
-// router.get('/actor/create', actor_controller.actor_create_get)
 
 // router.post('/actor/create', actor_controller.actor_create_post)
 

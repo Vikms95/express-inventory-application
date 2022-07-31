@@ -67,16 +67,16 @@ exports.movie_create_post = [
     .isIn(['Action','Drama','Thriller','Sci-Fi'])
     .withMessage('Genre name must be within the proposed values')
     .trim()
-    .isAlphanumeric()
-    .withMessage('Genre name must be alphanumeric')
-    .escape(),
-
-  body('actors')
-  // It does not work because it is comparing the ID taken from the input value with these strings
-    .isIn(['Benedict Cumberbatch','Ewan McGregor','Viggo Mortensen','Natalie Portman','Marion Cotillard'])
-    .withMessage('Actor name must be within the proposed values')
+    .isAlpha()
+    .withMessage('Genre name must contains only letters')
     .escape(),
   
+  body('actors')
+    .trim()
+    .isAlphanumeric()
+    .withMessage('Actor name contain only letters')
+    .escape(),
+
   (req, res, next) => {
     // Check with validationResult(req)
     const errors = validationResult(req)

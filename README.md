@@ -40,7 +40,7 @@ Models
 <!-- - Implement form to create movies -->
 <!-- - Implement movie creation -->
   <!-- :movie is not being created? find if code needs to be added -->
-    :cannot validate if the value exists within an array of values with express-validator?
+    <!-- :cannot validate if the value exists within an array of values with express-validator? -->
 - Implement movie update
 - Implement actor creation
 - Implement actor update
