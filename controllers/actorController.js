@@ -1,6 +1,9 @@
-const async = require('async')
 const Actor = require('../models/Actor');
 const Movie = require('../models/Movie');
+
+const {body, validationResult} = require('express-validator')
+const async = require('async')
+
 
 exports.actor_list = function(req, res, next){
   Actor
@@ -48,3 +51,41 @@ exports.actor_create_get = function(req, res, next){
       })
     })
 }
+
+exports.actor_create_post = [
+  body('name')
+    .trim()
+    .isAlphanumeric()
+    .withMessage('Name must be alphanumeric')
+    .escape(),
+
+
+  (req, res, next) =>{
+    const errors = validationResult(req)
+    const actor = new Actor({
+      name: req.body.name,
+      movies: req.body.movies
+    })
+
+    if(!errors.isEmpty()){
+      // Reload actor form page with errors
+      Movie
+      .find()
+      .exec(function(err, movie_list){
+        if(err) return next(err)
+        res.render('actor_create',
+        {
+          title:'Create Actor', 
+          movie_list: movie_list,
+          errors: errors.array()
+        })
+      })
+    }else{
+      // We save the actor
+      actor.save(function(err){
+        if(err) return next(err)
+        res.redirect(actor.url)
+      })
+    }
+  }
+]

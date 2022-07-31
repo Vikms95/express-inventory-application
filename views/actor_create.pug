@@ -7,9 +7,9 @@ block content
       input(type='text', placeholder='Name of actor' name='name' required='true' value=(actor==undefined ? '' : actor.name))
       br
       label(for='movies') Movies he/she acted on:
-      select(type='select', placeholder='Select movies' name='genres')
+      select(type='select', placeholder='Select movies' name='movies')
         for movie in movie_list
-          option( value=movie.name selected= false ) #{movie.name}
+          option( value=movie._id selected= false ) #{movie.name}
       br
     button(type='submit') Create actor
   if errors

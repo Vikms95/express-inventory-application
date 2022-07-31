@@ -4,6 +4,7 @@ const Genre = require('../models/Genre')
 
 const {body, validationResult} = require('express-validator')
 const async = require('async');
+const { off } = require('../models/Movie');
 
 exports.index =  function(req, res, next){
   // Count the items to be able to show them on the index
@@ -36,7 +37,7 @@ exports.movie_detail = function(req, res, next){
     .populate('actors')
     .exec(function(err, results) {
       if(err) return next(err)
-      res.render('movie_detail', {name: results.name, franchise: results.movie_franchise, genre: results.genre, actors: results.actors})
+      res.render('movie_detail', {movie: results, name: results.name, franchise: results.movie_franchise, genre: results.genre, actors: results.actors})
     })
 }
 
@@ -80,7 +81,6 @@ exports.movie_create_post = [
   (req, res, next) => {
     // Check with validationResult(req)
     const errors = validationResult(req)
-    console.log(errors);
     
     let movie = new Movie({
       name: req.body.name,
@@ -117,3 +117,32 @@ exports.movie_create_post = [
     }
   }
 ]
+
+exports.movie_update_get = function(req, res, next){
+  async.parallel({
+    // Get the id of the movie from the req.params
+    movie: function(callback){
+      Movie
+        .findById(req.params.id)
+        .populate('actors')
+        .exec(callback)
+    },
+    // Get all the genres and actors
+    genres: function(callback){
+      Genre.find().exec(callback)
+    },
+    actors: function(callback){
+      Actor.find().exec(callback)
+    }
+  }, function(err, results){
+      if(err) return next(err)
+      res.render('movie_create', 
+      {
+        title:'Update movie', 
+        movie: results.movie, 
+        genres: results.genres,
+        actors: results.actors
+      })
+  })
+  // Render the movie_create template with the data already inserted in the input fields as value
+}

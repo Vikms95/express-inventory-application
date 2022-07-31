@@ -27,8 +27,6 @@ Models
     name:String
   }
 
->URL action + this._id
-
 
 <!-- - Create index view -->
 <!-- - Create view to see all movies(movie_list.pug) -->
@@ -41,6 +39,8 @@ Models
 <!-- - Implement movie creation -->
   <!-- :movie is not being created? find if code needs to be added -->
     <!-- :cannot validate if the value exists within an array of values with express-validator? -->
+    :movie array is not showing on the template because the template is showing by .redirect, not .render
+
 - Implement movie update
 - Implement actor creation
 - Implement actor update

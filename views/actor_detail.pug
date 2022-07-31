@@ -5,11 +5,11 @@ block content
   span
   hr
   p Name: #{actor.name}       
-  hr
-  p Movies:
-  if movies  
-    each el in movies
-      span  #{el.name}         
+  if movies
+    hr
+    p Movies:
+    each movie in movies
+      span #{movie.name}         
   
   hr
   div

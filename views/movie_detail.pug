@@ -9,13 +9,13 @@ block content
   p Movie franchise:  #{franchise}      
   hr
   p Actors:
-    each el in actors
-      span  #{el.name}         
+    each actor in actors
+      span  #{actor.name}         
   hr
   p Genre:
     each el in genre
       span  #{el}      
   div
-    a(href="") Update movie 
+    a(href=movie.url+'/update') Update movie 
   div
     a(href="") Delete movie  

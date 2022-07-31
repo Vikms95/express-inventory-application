@@ -3,7 +3,7 @@ let Schema = mongoose.Schema
 
 let ActorSchema = new Schema({
   name: {type: String, maxLength: 50},
-  movies: [{type: Schema.Types.ObjectId, ref: 'Movie'}],
+  movies: [{type: Schema.Types.ObjectId, ref: 'MovieSchema'}],
 })
 
 ActorSchema
