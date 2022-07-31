@@ -34,13 +34,18 @@ router.get('/actors', actor_controller.actor_list)
 
 router.get('/actor/create', actor_controller.actor_create_get)
 
+router.get('/actor/:id/update', actor_controller.actor_update_get)
+
 router.get('/actor/:id', actor_controller.actor_detail)
 
 router.post('/actor/create', actor_controller.actor_create_post)
 
+
+
+
+
 // -- Pending
 
-// router.get('/actor/:id/update', actor_controller.actor_update_get)
 
 // router.post('/actor/:id/update', actor_controller.actor_update_post)
 

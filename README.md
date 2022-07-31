@@ -41,6 +41,6 @@ Models
     <!-- :cannot validate if the value exists within an array of values with express-validator? -->
     :movie array is not showing on the template because the template is showing by .redirect, not .render
 
-- Implement movie update
-- Implement actor creation
+<!-- - Implement movie update -->
+<!-- - Implement actor creation -->
 - Implement actor update

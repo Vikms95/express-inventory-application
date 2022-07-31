@@ -89,3 +89,31 @@ exports.actor_create_post = [
     }
   }
 ]
+
+exports.actor_update_get = function(req, res, next){
+  // Get the id of actor from req.params
+  async.parallel({
+    actor: function(callback){
+      Actor
+        .findById(req.params.id)
+        .exec(callback)
+    },
+    // Find all movies 
+    movies: function(callback){
+      Movie
+        .find()
+        .exec(callback)
+    }
+  }, function(err, results){
+      if(err) return next(err)
+      res.render('actor_create', 
+      {
+        title:'Update actor', 
+        actor: results.actor,
+        movie_list: results.movies
+      })
+    }
+  )
+  
+  // 
+}
