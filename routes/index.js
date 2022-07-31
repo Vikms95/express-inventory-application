@@ -40,6 +40,7 @@ router.get('/actor/:id', actor_controller.actor_detail)
 
 router.post('/actor/create', actor_controller.actor_create_post)
 
+router.post('/actor/:id/update', actor_controller.actor_update_post)
 
 
 
@@ -47,7 +48,6 @@ router.post('/actor/create', actor_controller.actor_create_post)
 // -- Pending
 
 
-// router.post('/actor/:id/update', actor_controller.actor_update_post)
 
 // router.get('/actor/:id/delete', actor_controller.actor_delete_get)
 

@@ -113,7 +113,60 @@ exports.actor_update_get = function(req, res, next){
         movie_list: results.movies
       })
     }
-  )
+    )
+  }
   
-  // 
-}
+  exports.actor_update_post = [
+    // Sanitize inputs
+  body('name')
+    .isString()
+    .withMessage('Enter a valid name')
+    .escape(),
+    (req, res, next) => {
+      const errors = validationResult(req)
+      // Create new actor based on req.body values
+    const actor = new Actor({
+      _id: req.params.id,
+      name: req.body.name,
+      movies: req.body.movies
+    })
+    console.log(actor);
+    
+    // if errors
+    if(!errors.isEmpty()){
+      
+      // res.render form page with the errors as an extra parameter
+      async.parallel({
+        actor: function(callback){
+          Actor
+          .findById(req.params.id)
+          .exec(callback)
+        },
+        // Find all movies 
+        movies: function(callback){
+          Movie
+          .find()
+          .exec(callback)
+        }
+      }, function(err, results){
+        if(err) return next(err)
+        res.render('actor_create', 
+        {
+          title:'Update actor', 
+          actor: results.actor,
+          movie_list: results.movies,
+          errors: errors.array()
+        })
+      }
+      )
+    // if no errors
+    }else{
+      console.log(actor.movies)
+      // findByIdAndUpdate the actor and redirect to the updatedActor.url 
+      Actor.findByIdAndUpdate(req.params.id, actor, {}, function(err, updatedActor){
+        if(err) return next(err)
+        res.redirect(updatedActor.url)
+      })
+    }
+  }
+]
