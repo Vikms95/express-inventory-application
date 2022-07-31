@@ -18,7 +18,7 @@ router.get('/movie/create', movie_controller.movie_create_get)
 
 router.get('/movie/:id', movie_controller.movie_detail)
 
-// router.post('/movie/create', movie_controller.movie_create_post)
+router.post('/movie/create', movie_controller.movie_create_post)
 
 // router.get('/movie/:id/update', movie_controller.movie_update_get)
 

@@ -2,6 +2,7 @@ const Movie = require('../models/Movie')
 const Actor = require('../models/Actor')
 const Genre = require('../models/Genre')
 
+const {body, validationResult} = require('express-validator')
 const async = require('async');
 
 exports.index =  function(req, res, next){
@@ -49,11 +50,70 @@ exports.movie_create_get = function(req, res, next){
     }
   }, function(err, results){
     if(err) return next(err)
-    // Create template
-    console.log(results.actors);
-    
     res.render('movie_create', {title:'Create movie', genres: results.genres, actors: results.actors})
   }
   
   )  
 }
+
+exports.movie_create_post = [    
+  // Sanitize inputs with body method
+  body('name', 'Name must be alphanumeric')
+    .trim()
+    .isAlphanumeric()
+    .escape(),
+
+  body('genres')
+    .isIn(['Action','Drama','Thriller','Sci-Fi'])
+    .withMessage('Genre name must be within the proposed values')
+    .trim()
+    .isAlphanumeric()
+    .withMessage('Genre name must be alphanumeric')
+    .escape(),
+
+  body('actors')
+  // It does not work because it is comparing the ID taken from the input value with these strings
+    .isIn(['Benedict Cumberbatch','Ewan McGregor','Viggo Mortensen','Natalie Portman','Marion Cotillard'])
+    .withMessage('Actor name must be within the proposed values')
+    .escape(),
+  
+  (req, res, next) => {
+    // Check with validationResult(req)
+    const errors = validationResult(req)
+    console.log(errors);
+    
+    let movie = new Movie({
+      name: req.body.name,
+      actors: req.body.actors,
+      genre: req.body.genres
+    })
+    // If errors were found in the validation
+    if(!errors.isEmpty()){
+      // Redirect user to the form
+      async.parallel({
+        genres: function(callback){
+          Genre.find(callback)
+        },
+        actors: function(callback){
+          Actor.find(callback)
+        }
+      }, function(err, results){
+        if(err) return next(err)
+        res.render('movie_create', 
+          {
+            title:'Create movie',
+            genres: results.genres, 
+            actors: results.actors, 
+            movie:movie, 
+            errors: errors.array()
+          })
+      })
+    // If no errors were found 
+    }else{
+      movie.save(function(err){
+        if(err) return next(err)
+        res.redirect(movie.url)
+      })
+    }
+  }
+]

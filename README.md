@@ -37,8 +37,10 @@ Models
   <!-- :I need to use id within the array to be able to reference it? -->
   <!-- :find Scçhema.Types.ObjectId in array, I already got how to populate a field that contains an id -->
 <!-- - Find all bookinstances, no matter what the book is -->
-- Implement form to create movies
-- Implement movie creation
+<!-- - Implement form to create movies -->
+<!-- - Implement movie creation -->
+  <!-- :movie is not being created? find if code needs to be added -->
+    :cannot validate if the value exists within an array of values with express-validator?
 - Implement movie update
 - Implement actor creation
 - Implement actor update
