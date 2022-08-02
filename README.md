@@ -42,6 +42,7 @@ Models
 <!-- - Implement actor creation -->
 <!-- -Delete movie
 -Delete actor -->
+<!-- -Implement all movieinstance route methods -->
 
 -Movie is not showing on template when creating an actor
   :after doing the delete methods, it does not seem to be even included within the actor array?
@@ -49,6 +50,5 @@ Models
     :how are they created on populatedb?
 -Movie is not updating when updating an actor
 
--Implement all movieinstance route methods
-
-
+EXTRA CREDIT: For bonus points, try to figure out how to add and upload images for each item. Use this middleware which was created by the Express team. The documentation in the README there should be enough to get you going.
+EXTRA CREDIT: We will learn about creating users with secure passwords in a later lesson, but for now we don’t want just anyone to be able to delete and edit items in our inventory! Figure out how to protect destructive actions (like deleting and updating) by making users enter a secret admin password to confirm the action.

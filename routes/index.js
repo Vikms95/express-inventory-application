@@ -4,6 +4,8 @@ const movie_controller = require('../controllers/movieController')
 const actor_controller = require('../controllers/actorController')
 const genre_controller = require('../controllers/genreController')
 const movieinstance_controller = require('../controllers/movieInstanceController')
+const multer = require('multer')
+const upload = multer({dest: 'uploads/'})
 
 // HOMEPAGE
 router.get('/', movie_controller.index);
@@ -17,7 +19,7 @@ router.get('/movie/:id/update', movie_controller.movie_update_get)
 
 router.get('/movie/:id', movie_controller.movie_detail)
 
-router.post('/movie/create', movie_controller.movie_create_post)
+router.post('/movie/create', upload.single('avatar'), movie_controller.movie_create_post)
 
 router.post('/movie/:id/update', movie_controller.movie_update_post)
 

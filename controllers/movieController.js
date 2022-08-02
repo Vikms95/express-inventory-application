@@ -5,7 +5,8 @@ const MovieInstance = require('../models/MovieInstance')
 
 const {body, validationResult} = require('express-validator')
 const async = require('async');
-const { off } = require('../models/Movie');
+const multer = require('multer')
+const upload = multer({dest: 'uploads/'})
 
 exports.index =  function(req, res, next){
   // Count the items to be able to show them on the index

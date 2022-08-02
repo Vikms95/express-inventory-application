@@ -2,7 +2,7 @@ extends layout
 
 block content 
   h1= title
-  form(method='POST' action='')
+  form(method='POST' action='/profile' enctype='multipart/form-data')
     div 
       label(for='name') Name:
       input(type='text', placeholder='Name of movie' name='name' required='true' value=(movie==undefined ? '' : movie.name))
@@ -16,7 +16,10 @@ block content
       select(type='select', placeholder='Select actor' name='actors') 
         for actor in actors
           option( value=actor._id selected= false ) #{actor.name}
+      br
+      <input type="file" name="avatar" />
     //- This button will trigger the POST method
+    br
     button(type='submit') Create movie
   if errors
     ul
