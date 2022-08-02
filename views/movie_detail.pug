@@ -15,6 +15,9 @@ block content
   p Genre:
     each el in genre
       span  #{el}      
+  - var img = 'uploads/'+movie.avatar
+  img(src=img)
+
   div
     a(href=movie.url+'/update') Update movie 
   div

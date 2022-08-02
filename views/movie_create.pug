@@ -2,7 +2,7 @@ extends layout
 
 block content 
   h1= title
-  form(method='POST' action='/profile' enctype='multipart/form-data')
+  form(method='POST' action='' enctype='multipart/form-data')
     div 
       label(for='name') Name:
       input(type='text', placeholder='Name of movie' name='name' required='true' value=(movie==undefined ? '' : movie.name))

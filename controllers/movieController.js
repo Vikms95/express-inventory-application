@@ -5,8 +5,6 @@ const MovieInstance = require('../models/MovieInstance')
 
 const {body, validationResult} = require('express-validator')
 const async = require('async');
-const multer = require('multer')
-const upload = multer({dest: 'uploads/'})
 
 exports.index =  function(req, res, next){
   // Count the items to be able to show them on the index
@@ -83,13 +81,14 @@ exports.movie_create_post = [
   (req, res, next) => {
     // Check with validationResult(req)
     const errors = validationResult(req)
-    
     let movie = new Movie({
       name: req.body.name,
       actors: req.body.actors,
-      genre: req.body.genres
+      genre: req.body.genres,
+      avatar: req.file.filename
     })
     // If errors were found in the validation
+    console.log(movie.avatar)
     if(!errors.isEmpty()){
       // Redirect user to the form
       async.parallel({

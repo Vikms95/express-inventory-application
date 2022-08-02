@@ -1,11 +1,23 @@
 var express = require('express');
 var router = express.Router();
+const path = require('path')
 const movie_controller = require('../controllers/movieController')
 const actor_controller = require('../controllers/actorController')
 const genre_controller = require('../controllers/genreController')
 const movieinstance_controller = require('../controllers/movieInstanceController')
+
 const multer = require('multer')
-const upload = multer({dest: 'uploads/'})
+const storage = multer.diskStorage({
+  destination: (req, file, cb) =>  {
+    cb(null, 'uploads/')
+  },
+  filename: (req, file, cb) => {
+    console.log(file)
+    cb(null, Date.now() + path.extname(file.originalname))
+  }
+})
+const upload = multer({storage: storage})
+
 
 // HOMEPAGE
 router.get('/', movie_controller.index);
