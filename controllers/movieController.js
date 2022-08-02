@@ -214,3 +214,14 @@ exports.movie_delete_get = function(req, res, next){
       res.render('movie_delete', {title:'Delete Movie',movie: results.movie, movieinstances: results.movieinstances})
   })
 }
+
+exports.movie_delete_post = function(req, res, next){
+  // Get the movie id from req.body.movieid
+  // Use the findByIdAndDelete method
+  // Redirect to movie list
+  Movie
+    .findByIdAndDelete(req.body.movieid, function(err){
+      if(err) return next(err)
+      res.redirect('/movies')
+    })
+}
