@@ -45,6 +45,7 @@ router.post('/actor/:id/update', actor_controller.actor_update_post)
 
 router.get('/actor/:id/delete', actor_controller.actor_delete_get)
 
+router.post('/actor/:id/delete', actor_controller.actor_delete_post)
 
 
 // -- Pending
@@ -52,7 +53,6 @@ router.get('/actor/:id/delete', actor_controller.actor_delete_get)
 
 
 
-// router.post('/actor/:id/delete', actor_controller.actor_delete_post)
 
 //  MOVIE INSTANCES ROUTES
 router.get('/movieinstances', movieinstance_controller.movie_instance_list)

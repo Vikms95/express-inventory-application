@@ -40,10 +40,12 @@ Models
   <!-- :movie is not being created? find if code needs to be added -->
 <!-- - Implement movie update -->
 <!-- - Implement actor creation -->
+<!-- -Delete movie
+-Delete actor -->
 
--Movie is not updating when updating an actor
 -Movie is not showing on template when creating an actor
+  :after doing the delete methods, it does not seem to be even included within the actor array?
+    :double check what are we doing when creating the actor
+-Movie is not updating when updating an actor
 
--Delete movie
--Delete actor
 

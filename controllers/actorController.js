@@ -177,7 +177,17 @@ exports.actor_delete_get = function(req, res, next){
     }
   }, function(err, results){
     if(err) return next(err)
-    console.log(results.movies)
     res.render('actor_delete', {title: 'Delete Actor', actor: results.actor, movies: results.movies})
   })
+}
+
+exports.actor_delete_post = function(req, res, next){
+  // Get id from actor from the req.body.actorid
+  // Use findByIdAndDelete
+  // Redirect to actor list
+  Actor
+    .findByIdAndDelete(req.body.actorid, function(err){
+      if(err) return next(err)
+      res.redirect('/actors')
+    })
 }
