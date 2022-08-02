@@ -3,14 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const compression = require('compression')
+const helmet = require('helmet')
 
 var indexRouter = require('./routes/index');
 
 // Setup mongoose
 let mongoose = require('mongoose')
 let newURI = 'mongodb+srv://vikms:ustdedt8@cluster0.bni9sko.mongodb.net/?retryWrites=true&w=majority'
+let mongoDB = process.env.MONGODB_URI || newURI
+
 mongoose.connect(
-  newURI,
+  mongoDB,
   { useNewUrlParser: true, useUnifiedTopology: true },
   function (err, res) {
       try {
@@ -27,6 +31,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error: '))
 
 var app = express();
 
+app.use(compression())
+app.use(helmet())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
