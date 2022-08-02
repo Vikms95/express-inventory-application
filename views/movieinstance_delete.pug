@@ -1,0 +1,12 @@
+extends layout
+
+block content 
+  h1 #{movieinstance.movie.name}
+
+    p Do you really want to delete this Movie Instance?
+
+    form(method='POST' action='')
+      div
+        input(type='hidden',name='movieid', required='true', value=movieinstance._id )
+      
+      button(type='submit') Delete

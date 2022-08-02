@@ -2,7 +2,8 @@ const MovieInstance = require('../models/MovieInstance')
 const Movie = require('../models/Movie')
 
 const async = require('async')
-const {body, validationResult} = require('express-validator')
+const {body, validationResult} = require('express-validator');
+const e = require('express');
 
 exports.movie_instance_list = function(req, res, next){
   MovieInstance
@@ -66,3 +67,65 @@ exports.movieinstance_create_post = [
     }
   }
 ]
+
+exports.movieinstance_update_get = function(req, res, next){
+  // Find all the movies
+  // Render the movieinstance form with the movies array
+  Movie
+  .find()
+  .exec(function(err, movies){
+    res.render('movie_instance_create', {title:'Update Movie Instance', movies: movies})
+  })
+}
+
+exports.movieinstance_update_post = [
+  // Sanitize input fields
+  // If error
+    // Re render form template with errors array
+  // If no error
+    // Use findByIdAndUpdate() with the req.params.id of the movieinstance
+  body('status')
+    .trim()
+    .isAlphanumeric()
+    .withMessage('Enter a valid status value')
+    .escape(),
+  (req, res, next) => {
+    const errors = validationResult(req)
+    const movieinstance = new MovieInstance({
+      _id: req.params.id,
+      movie: req.body.movie,
+      status: req.body.status
+    })
+
+    if(!errors.isEmpty()) {
+      Movie
+      .find()
+      .exec(function(err, movies){
+        res.render('movie_instance_create', {title:'Update Movie Instance', movies: movies, errors: errors.array()})
+      })
+    } else {
+      MovieInstance.findByIdAndUpdate(req.params.id, movieinstance, {}, function(err, updatedMovieInstance){
+        if(err) return next(err)
+        res.redirect(updatedMovieInstance.url)
+      })
+    }
+  }
+]
+
+exports.movieinstance_delete_get = function(req, res, next){
+  MovieInstance
+    .findByIdAndDelete(req.params.id)
+    .populate('movie')
+    .exec(function(err, movieinstance){
+      if(err) return next(err)
+      res.render('movieinstance_delete', {title:'Delete Movie Instance', movieinstance:movieinstance})
+    })
+}
+
+exports.movieinstance_delete_post = function(req, res, render){
+  MovieInstance
+    .findByIdAndDelete(req.body.movieid, function(err){
+      if(err) return next(err)
+      res.redirect('/movieinstances')
+    })
+}

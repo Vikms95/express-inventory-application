@@ -63,17 +63,18 @@ router.get('/movieinstance/:id', movieinstance_controller.movie_instance_details
 
 router.post('/movieinstance/create', movieinstance_controller.movieinstance_create_post)
 
+router.get('/movieinstance/:id/update', movieinstance_controller.movieinstance_update_get)
+
+router.post('/movieinstance/:id/update', movieinstance_controller.movieinstance_update_post)
+
+router.get('/movieinstance/:id/delete', movieinstance_controller.movieinstance_delete_get)
+
+router.post('/movieinstance/:id/delete', movieinstance_controller.movieinstance_delete_post)
+
 // -- Pending
 
 
 
-// router.get('/movieinstance/:id/update', movieinstance_controller.movieinstance_update_get)
-
-// router.post('/movieinstance/:id/update', movieinstance_controller.movieinstance_update_post)
-
-// router.get('/movieinstance/:id/delete', movieinstance_controller.movieinstance_delete_get)
-
-// router.post('/movieinstance/:id/delete', movieinstance_controller.movieinstance_delete_post)
 
 
 // GENRES ROUTES
