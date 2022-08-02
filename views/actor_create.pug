@@ -1,6 +1,7 @@
 extends layout 
 
 block content 
+  h1= title
   form(method='POST' action='')
     div 
       label(for='name') Name:
@@ -8,7 +9,7 @@ block content
       br
       label(for='movies') Movies he/she acted on:
       select(type='select', placeholder='Select movies' name='movies')
-        for movie in movie_list
+        for movie in movies
           option( value=movie._id selected= false ) #{movie.name}
       br
     button(type='submit') Create actor

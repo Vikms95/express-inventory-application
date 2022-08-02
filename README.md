@@ -46,6 +46,9 @@ Models
 -Movie is not showing on template when creating an actor
   :after doing the delete methods, it does not seem to be even included within the actor array?
     :double check what are we doing when creating the actor
+    :how are they created on populatedb?
 -Movie is not updating when updating an actor
+
+-Implement all movieinstance route methods
 
 

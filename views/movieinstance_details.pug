@@ -7,6 +7,6 @@ block content
   p Status: #{movieinstance.status}       
   hr
   div
-    a(href="") Update instance 
+    a(href=movieinstance.url + '/update') Update instance 
   div
-    a(href="") Delete instance
+    a(href=movieinstance.url + '/delete') Delete instance

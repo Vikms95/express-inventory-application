@@ -41,12 +41,10 @@ exports.actor_create_get = function(req, res, next){
     .find()
     .exec(function(err, movie_list){
       if(err) return next(err)
-      console.log("Hi");
-      
       res.render('actor_create',
       {
         title:'Create Actor', 
-        movie_list: movie_list
+        movies: movie_list
       })
     })
 }
@@ -65,7 +63,7 @@ exports.actor_create_post = [
       name: req.body.name,
       movies: req.body.movies
     })
-
+    console.log(actor)
     if(!errors.isEmpty()){
       // Reload actor form page with errors
       Movie
@@ -75,7 +73,7 @@ exports.actor_create_post = [
         res.render('actor_create',
         {
           title:'Create Actor', 
-          movie_list: movie_list,
+          movies: movie_list,
           errors: errors.array()
         })
       })
@@ -109,7 +107,7 @@ exports.actor_update_get = function(req, res, next){
       {
         title:'Update actor', 
         actor: results.actor,
-        movie_list: results.movies
+        movies: results.movies
       })
     }
     )

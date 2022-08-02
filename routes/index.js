@@ -57,13 +57,15 @@ router.post('/actor/:id/delete', actor_controller.actor_delete_post)
 //  MOVIE INSTANCES ROUTES
 router.get('/movieinstances', movieinstance_controller.movie_instance_list)
 
+router.get('/movieinstance/create', movieinstance_controller.movieinstance_create_get)
+
 router.get('/movieinstance/:id', movieinstance_controller.movie_instance_details)
+
+router.post('/movieinstance/create', movieinstance_controller.movieinstance_create_post)
 
 // -- Pending
 
-// router.get('/movieinstance/create', movieinstance_controller.movieinstance_create_get)
 
-// router.post('/movieinstance/create', movieinstance_controller.movieinstance_create_post)
 
 // router.get('/movieinstance/:id/update', movieinstance_controller.movieinstance_update_get)
 
