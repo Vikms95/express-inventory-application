@@ -43,3 +43,7 @@ Models
 
 -Movie is not updating when updating an actor
 -Movie is not showing on template when creating an actor
+
+-Delete movie
+-Delete actor
+

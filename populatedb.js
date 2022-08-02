@@ -200,7 +200,7 @@ function(err, results) {
         console.log('FINAL ERR: '+err);
     }
     else {
-        console.log('BOOKInstances: '+ movieInstances);
+        console.log('MovieInstances: '+ movieInstances);
         
     }
     // All done, disconnect from database

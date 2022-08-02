@@ -21,11 +21,11 @@ router.post('/movie/create', movie_controller.movie_create_post)
 
 router.post('/movie/:id/update', movie_controller.movie_update_post)
 
+router.get('/movie/:id/delete', movie_controller.movie_delete_get) 
 // -- Pending
 
 
 
-// router.get('/movie/:id/delete', movie_controller.movie_delete_get)
 
 // router.post('/movie/:id/delete', movie_controller.movie_delete_post)
 

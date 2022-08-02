@@ -1,6 +1,7 @@
 const Movie = require('../models/Movie')
 const Actor = require('../models/Actor')
 const Genre = require('../models/Genre')
+const MovieInstance = require('../models/MovieInstance')
 
 const {body, validationResult} = require('express-validator')
 const async = require('async');
@@ -187,3 +188,29 @@ exports.movie_update_post = [
     }
   }
 ]
+
+
+exports.movie_delete_get = function(req, res, next){
+// Get all the instances of the movie by finding if any has the movie value the same as req.params.id?
+// Load the movie_delete template
+// if any instances exist
+  // load the template with the instances, asking to delete them before and no confirm delete button
+// if no instances exist
+  // load the template asking for a confirmation to delete 
+// Test with LOTR that has 2 instances
+  async.parallel({
+    movieinstances: function(callback){
+      MovieInstance
+      .find({'movie': req.params.id})
+      .exec(callback)
+    },
+    movie: function(callback){
+      Movie
+        .findById(req.params.id)
+        .exec(callback)
+    }
+  }, function(err, results){
+    if(err) return next(err)
+      res.render('movie_delete', {title:'Delete Movie',movie: results.movie, movieinstances: results.movieinstances})
+  })
+}
