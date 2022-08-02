@@ -15,7 +15,8 @@ block content
   p Genre:
     each el in genre
       span  #{el}      
-  - var img = 'uploads/'+movie.avatar
+  - var img = '/uploads/'+movie.avatar
+  - console.log(img)
   img(src=img)
 
   div

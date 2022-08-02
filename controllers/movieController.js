@@ -88,7 +88,6 @@ exports.movie_create_post = [
       avatar: req.file.filename
     })
     // If errors were found in the validation
-    console.log(movie.avatar)
     if(!errors.isEmpty()){
       // Redirect user to the form
       async.parallel({
