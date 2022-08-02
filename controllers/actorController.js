@@ -158,3 +158,26 @@ exports.actor_update_get = function(req, res, next){
     }
   }
 ]
+
+exports.actor_delete_get = function(req, res, next){
+  // Actor depends on movie
+  // Get the actor with the req.params.id form actor_detail
+  // Get the movies where the actor has participated by searching for the movie actors array(you already did this with the actor detail)
+  // If any, the actor_delete does not show the delete button, but the list of movies to delete inbeforehand
+  async.parallel({
+    actor: function(callback){
+      Actor
+        .findById(req.params.id)
+        .exec(callback)
+    },
+    movies: function(callback){
+      Movie
+        .find({'actors': req.params.id})
+        .exec(callback)
+    }
+  }, function(err, results){
+    if(err) return next(err)
+    console.log(results.movies)
+    res.render('actor_delete', {title: 'Delete Actor', actor: results.actor, movies: results.movies})
+  })
+}
