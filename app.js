@@ -5,11 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const compression = require('compression')
 const helmet = require('helmet')
-
+let mongoose = require('mongoose')
 var indexRouter = require('./routes/index');
 
+
 // Setup mongoose
-let mongoose = require('mongoose')
 let newURI = 'mongodb+srv://vikms:ustdedt8@cluster0.bni9sko.mongodb.net/?retryWrites=true&w=majority'
 let mongoDB = process.env.MONGODB_URI || newURI
 
